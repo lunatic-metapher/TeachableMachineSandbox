@@ -27,7 +27,7 @@
         const URL = "https://teachablemachine.withgoogle.com/models/eFrqMIkSe/";
         let model, webcam, ctx, labelContainer, maxPredictions;
 
-        async function init() {
+        function init() {
           createPromise().then(function () {
             amazing.src = "./audio/amazing.mp3";
             amazing.load();
