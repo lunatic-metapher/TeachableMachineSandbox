@@ -8,7 +8,7 @@
   </head>
   <body>
 
-    <div>Teachable Machine Audio Model</div>
+    <div>俊ちゃん</div>
     <button type="button" onclick="playAmazing()">すごーい！</button>
     <button type="button" onclick="playZazaza()">ザッザッザッーщ(ﾟДﾟщ)</button>
     <button type="button" onclick="playSoon()">すーーーーん！</button>
@@ -27,7 +27,7 @@
 //         const URL = "https://teachablemachine.withgoogle.com/models/jhQXNSO-A/";
         const URL = "https://teachablemachine.withgoogle.com/models/eFrqMIkSe/";
         let model, webcam, ctx, labelContainer, maxPredictions;
-
+        let self = this;
         async function init() {
             amazing.src = "./audio/amazing.mp3";
             amazing.load();
@@ -62,6 +62,7 @@
             webcam = new tmPose.Webcam(200, 200, flip); // width, height, flip
             webcam.setup(); // request access to the webcam
             let promise = webcam.play();
+            self.webcam = webcam;
             promise.then(resolve => {
               window.requestAnimationFrame(loop);
               // append/get elements to the DOM
@@ -76,14 +77,14 @@
             });
         }
         async function loop(timestamp) {
-            webcam.update(); // update the webcam frame
+            self.webcam.update(); // update the webcam frame
             await predict();
             window.requestAnimationFrame(loop);
         }
         async function predict() {
             // Prediction #1: run input through posenet
             // estimatePose can take in an image, video or canvas html element
-            const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
+            const { pose, posenetOutput } = await model.estimatePose(self.webcam.canvas);
             // Prediction 2: run input through teachable machine classification model
             const prediction = await model.predict(posenetOutput);
 
@@ -107,14 +108,13 @@
         }
 
         function drawPose(pose) {
-            if (webcam.canvas) {
-                ctx.drawImage(webcam.canvas, 0, 0);
+            if (self.webcam.canvas) {
+                ctx.drawImage(self.webcam.canvas, 0, 0);
                 // draw the keypoints and skeleton
                 if (pose) {
                     const minPartConfidence = 0.5;
                     tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
                     tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
-                 console.log("update");
                 }
              
             }
