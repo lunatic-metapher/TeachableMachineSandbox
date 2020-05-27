@@ -60,16 +60,19 @@
             const flip = true; // whether to flip the webcam
             webcam = new tmPose.Webcam(200, 200, flip); // width, height, flip
             await webcam.setup(); // request access to the webcam
-            webcam.play();
-            window.requestAnimationFrame(loop);
-            // append/get elements to the DOM
-            const canvas = document.getElementById("canvas2");
-            canvas.width = 200; canvas.height = 200;
-            ctx = canvas.getContext("2d");
-            labelContainer = document.getElementById("label-container");
-            for (let i = 0; i < maxPredictions; i++) { // and class labels
-                labelContainer.appendChild(document.createElement("div"));
-            }
+            let promise = webcam.play();
+            promise.then(m => {
+             window.requestAnimationFrame(loop);
+             // append/get elements to the DOM
+             const canvas = document.getElementById("canvas2");
+             canvas.width = 200; canvas.height = 200;
+             ctx = canvas.getContext("2d");
+             labelContainer = document.getElementById("label-container");
+             for (let i = 0; i < maxPredictions; i++) { // and class labels
+                 labelContainer.appendChild(document.createElement("div"));
+             }
+            }).catch(e => {
+            });
         }
         async function loop(timestamp) {
             webcam.update(); // update the webcam frame
