@@ -101,10 +101,10 @@
             // finally draw the poses
             drawPose(pose);
         }
-
+let i = 0;
         function drawPose(pose) {
             if (webcam.canvas) {
-                ctx.drawImage(webcam.canvas, 0, 0);
+                ctx.drawImage(webcam.canvas, 0, i++);
                 // draw the keypoints and skeleton
                 if (pose) {
                     const minPartConfidence = 0.5;
