@@ -60,7 +60,7 @@
             // Convenience function to setup a webcam
             const flip = true; // whether to flip the webcam
             webcam = new tmPose.Webcam(200, 200, flip); // width, height, flip
-            await webcam.setup(); // request access to the webcam
+            webcam.setup(); // request access to the webcam
             webcam.play();
             window.requestAnimationFrame(loop);
             // append/get elements to the DOM
@@ -73,7 +73,7 @@
             }
         }
         async function loop(timestamp) {
-            await webcam.update(); // update the webcam frame
+            webcam.renderCameraToCanvas(); // update the webcam frame
             await predict();
             window.requestAnimationFrame(loop);
         }
