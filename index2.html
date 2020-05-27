@@ -27,7 +27,7 @@
         const URL = "https://teachablemachine.withgoogle.com/models/eFrqMIkSe/";
         let model, webcam, ctx, labelContainer, maxPredictions;
 
-        async function init() {
+        function init() {
           createPromise().then(function () {
             amazing.src = "./audio/amazing.mp3";
             amazing.load();
@@ -79,17 +79,17 @@
             console.log("promise catch:" + err);
           });
         }
-        async function loop(timestamp) {
+        function loop(timestamp) {
             webcam.update(); // update the webcam frame
             await predict();
             window.requestAnimationFrame(loop);
         }
-        async function createPromise() {
+        function createPromise() {
             return new Promise(function (resolve, reject) {
                 resolve("resolved");
             });
         }
-        async function predict() {
+        function predict() {
             // Prediction #1: run input through posenet
             // estimatePose can take in an image, video or canvas html element
             const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
@@ -129,13 +129,13 @@
         let amazing = new Audio();
         let zazaza = new Audio();
         let soon = new Audio();
-        async function playAmazing() {
+        function playAmazing() {
           amazing.play();
         }
-        async function playZazaza() {
+        function playZazaza() {
           zazaza.play();
         }
-        async function playSoon() {
+        function playSoon() {
           soon.play();
         }
       </script>
