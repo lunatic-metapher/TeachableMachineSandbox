@@ -28,27 +28,27 @@
         let model, webcam, ctx, labelContainer, maxPredictions;
 
         async function init() {
-//             amazing.src = "./audio/amazing.mp3";
-//             amazing.load();
+            amazing.src = "./audio/amazing.mp3";
+            amazing.load();
 
-//             amazing.addEventListener("ended", function () {
-//               amazing.currentTime = 0;
-//               // amazing.play();
-//             }, false);
-//             zazaza.src = "./audio/zazaza.mp3";
-//             zazaza.load();
+            amazing.addEventListener("ended", function () {
+              amazing.currentTime = 0;
+              // amazing.play();
+            }, false);
+            zazaza.src = "./audio/zazaza.mp3";
+            zazaza.load();
 
-//             zazaza.addEventListener("ended", function () {
-//               zazaza.currentTime = 0;
-//               // zazaza.play();
-//             }, false);
-//             soon.src = "./audio/soon.mp3";
-//             soon.load();
+            zazaza.addEventListener("ended", function () {
+              zazaza.currentTime = 0;
+              // zazaza.play();
+            }, false);
+            soon.src = "./audio/soon.mp3";
+            soon.load();
 
-//             soon.addEventListener("ended", function () {
-//               soon.currentTime = 0;
-//               // soon.play();
-//             }, false);
+            soon.addEventListener("ended", function () {
+              soon.currentTime = 0;
+              // soon.play();
+            }, false);
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
 
@@ -91,13 +91,13 @@
                 const classPrediction =
                     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
                 if (prediction[i].className != '平常時' && prediction[i].probability.toFixed(2) > 0.8) {
-//                   if (prediction[i].className == 'すごーい') {
-//                     playAmazing();
-//                   } else if (prediction[i].className == 'ざっざっざー') {
-//                     playZazaza();
-//                   } else if (prediction[i].className == 'すーん') {
-//                     playSoon();
-//                   }
+                  if (prediction[i].className == 'すごーい') {
+                    playAmazing();
+                  } else if (prediction[i].className == 'ざっざっざー') {
+                    playZazaza();
+                  } else if (prediction[i].className == 'すーん') {
+                    playSoon();
+                  }
                 }
                 labelContainer.childNodes[i].innerHTML = classPrediction;
             }
@@ -117,18 +117,18 @@
                 }
             }
         }
-//         let amazing = new Audio();
-//         let zazaza = new Audio();
-//         let soon = new Audio();
-//         async function playAmazing() {
-//           amazing.play();
-//         }
-//         async function playZazaza() {
-//           zazaza.play();
-//         }
-//         async function playSoon() {
-//           soon.play();
-//         }
+        let amazing = new Audio();
+        let zazaza = new Audio();
+        let soon = new Audio();
+        async function playAmazing() {
+          amazing.play();
+        }
+        async function playZazaza() {
+          zazaza.play();
+        }
+        async function playSoon() {
+          soon.play();
+        }
       </script>
   </body>
 </html>
