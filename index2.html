@@ -63,7 +63,6 @@
             await webcam.setup(); // request access to the webcam
             webcam.play();
             window.requestAnimationFrame(loop);
-console.log("2");
             // append/get elements to the DOM
             const canvas = document.getElementById("canvas");
             canvas.width = 200; canvas.height = 200;
@@ -74,9 +73,13 @@ console.log("2");
             }
         }
         async function loop(timestamp) {
+         console.log("1");
             webcam.update(); // update the webcam frame
+         console.log("2");
             await predict();
+         console.log("3");
             window.requestAnimationFrame(loop);
+         console.log("4");
         }
         async function predict() {
             // Prediction #1: run input through posenet
