@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <html>
   <head>
-    <title>Teachable Machine 基本サンプル</title>
+    <title>俊ちゃん</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,7 +18,7 @@
     <div><canvas id="canvas"></canvas></div>
     <div id="label-container"></div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8.3/dist/teachablemachine-pose.min.js"></script>
     <script type="text/javascript">
         // More API functions here:
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
@@ -58,11 +58,10 @@
             model = await tmPose.load(modelURL, metadataURL);
             maxPredictions = model.getTotalClasses();
             // Convenience function to setup a webcam
-            const size = 200;
             const flip = true; // whether to flip the webcam
-            webcam = new tmPose.Webcam(size, size); // width, height, flip
+            webcam = new tmPose.Webcam(200, 200, flip); // width, height, flip
             await webcam.setup(); // request access to the webcam
-            await webcam.play();
+            webcam.play();
             window.requestAnimationFrame(loop);
 
             // append/get elements to the DOM
