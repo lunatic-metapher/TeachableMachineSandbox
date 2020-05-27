@@ -72,10 +72,11 @@
             }
         }
         async function loop(timestamp) {
-            const flip = true; // whether to flip the webcam
-            webcam = new tmPose.Webcam(200, 200, flip); // width, height, flip
-            await webcam.setup()
+console.log("1");
+         　　await webcam.setup()
+console.log("2");
             webcam.update(); // update the webcam frame
+console.log("3");
             await predict();
             window.requestAnimationFrame(loop);
         }
