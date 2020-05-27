@@ -63,10 +63,10 @@
             await webcam.setup(); // request access to the webcam
             webcam.play();
             window.requestAnimationFrame(loop);
-
+console.log("2");
             // append/get elements to the DOM
             const canvas = document.getElementById("canvas");
-            canvas.width = size; canvas.height = size;
+            canvas.width = 200; canvas.height = 200;
             ctx = canvas.getContext("2d");
             labelContainer = document.getElementById("label-container");
             for (let i = 0; i < maxPredictions; i++) { // and class labels
