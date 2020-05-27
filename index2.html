@@ -72,11 +72,7 @@
             }
         }
         async function loop(timestamp) {
-console.log("1");
-         　　await webcam.setup()
-console.log("2");
-            webcam.update(); // update the webcam frame
-console.log("3");
+            await webcam.update(); // update the webcam frame
             await predict();
             window.requestAnimationFrame(loop);
         }
