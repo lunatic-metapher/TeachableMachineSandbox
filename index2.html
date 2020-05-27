@@ -72,11 +72,11 @@
                 labelContainer.appendChild(document.createElement("div"));
             }
         }
-        async function loop(timestamp) {
+        function loop(timestamp) {
          console.log("1");
             webcam.update(); // update the webcam frame
          console.log("2");
-            predict();
+            await predict();
          console.log("3");
             window.requestAnimationFrame(loop);
          console.log("4");
