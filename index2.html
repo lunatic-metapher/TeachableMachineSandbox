@@ -73,13 +73,9 @@
             }
         }
         async function loop(timestamp) {
-         console.log("1");
-            webcam.update(); // update the webcam frame
-         console.log("2");
+            await webcam.update(); // update the webcam frame
             await predict();
-         console.log("3");
             window.requestAnimationFrame(loop);
-         console.log("4");
         }
         async function predict() {
             // Prediction #1: run input through posenet
@@ -107,7 +103,7 @@
             drawPose(pose);
         }
 
-        async function drawPose(pose) {
+        function drawPose(pose) {
             if (webcam.canvas) {
                 ctx.drawImage(webcam.canvas, 0, 0);
                 // draw the keypoints and skeleton
@@ -115,8 +111,9 @@
                     const minPartConfidence = 0.5;
                     tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
                     tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
+                 console.log("update");
                 }
-             console.log("update");
+             
             }
         }
         let amazing = new Audio();
