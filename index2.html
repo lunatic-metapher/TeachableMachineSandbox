@@ -52,20 +52,26 @@
             }, false);
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
-
+console.log("1");
             // load the model and metadata
             // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
             // Note: the pose library adds a tmPose object to your window (window.tmPose)
             model = await tmPose.load(modelURL, metadataURL);
+console.log("2");
             maxPredictions = model.getTotalClasses();
+console.log("3");
 
             // Convenience function to setup a webcam
             const size = 200;
             const flip = true; // whether to flip the webcam
             webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
+console.log("4");
             await webcam.setup(); // request access to the webcam
+console.log("5");
             await webcam.play();
+console.log("6");
             window.requestAnimationFrame(loop);
+console.log("7");
 
             // append/get elements to the DOM
             const canvas = document.getElementById("canvas");
@@ -75,6 +81,8 @@
             for (let i = 0; i < maxPredictions; i++) { // and class labels
                 labelContainer.appendChild(document.createElement("div"));
             }
+         console.log("8");
+
         }
         async function loop(timestamp) {
             webcam.update(); // update the webcam frame
