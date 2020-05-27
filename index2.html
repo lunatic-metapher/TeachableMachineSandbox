@@ -28,6 +28,7 @@
         let model, webcam, ctx, labelContainer, maxPredictions;
 
         async function init() {
+          createPromise().then(function () {
             amazing.src = "./audio/amazing.mp3";
             amazing.load();
 
@@ -74,9 +75,15 @@
             for (let i = 0; i < maxPredictions; i++) { // and class labels
                 labelContainer.appendChild(document.createElement("div"));
             }
-          console.log("1");
+          }).catch(function (err) {
+            console.log("promise catch:" + err);
+          });
         }
-
+        function createPromise() {
+             return new Promise(function (resolve, reject) {
+                        resolve("resolved");
+             });
+        }
         async function loop(timestamp) {
             webcam.update(); // update the webcam frame
             await predict();
