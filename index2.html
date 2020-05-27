@@ -84,9 +84,9 @@
         async function predict() {
             // Prediction #1: run input through posenet
             // estimatePose can take in an image, video or canvas html element
-            const { pose, posenetOutput } = model.estimatePose(webcam.canvas);
+            const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
             // Prediction 2: run input through teachable machine classification model
-            const prediction = model.predict(posenetOutput);
+            const prediction = await model.predict(posenetOutput);
 
             for (let i = 0; i < maxPredictions; i++) {
                 const classPrediction =
@@ -107,7 +107,7 @@
             drawPose(pose);
         }
 
-        function drawPose(pose) {
+        async function drawPose(pose) {
             if (webcam.canvas) {
                 ctx.drawImage(webcam.canvas, 0, 0);
                 // draw the keypoints and skeleton
